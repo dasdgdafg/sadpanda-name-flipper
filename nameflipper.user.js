@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        name fixer
+// @name        sadpanda name flipper
 // @namespace   spacename
 // @description sometimes fixes name orders, sometimes messes them up
 // @include     https://exhentai.org/g/*
