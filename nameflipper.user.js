@@ -3,7 +3,7 @@
 // @namespace   spacename
 // @description sometimes fixes name orders, sometimes messes them up
 // @include     https://exhentai.org/g/*
-// @version     1
+// @version     1.1
 // @grant       none
 // ==/UserScript==
 
