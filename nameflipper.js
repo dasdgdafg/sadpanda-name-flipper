@@ -22,6 +22,33 @@ const japaneseArray = [
 const japanese = new Set(japaneseArray);
 const repeats = new Set(['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'm', 'n', 'p', 'r', 's', 't', 'w', 'z']);
 
+// memes
+const memes = [
+  'Anal Aficionado',
+  'Baby Batter Bladder',
+  'Ballsack Knapsack',
+  'Boner Toner',
+  'Cock Sock',
+  'Erection Confection',
+  'Fluid Druid',
+  'Jizz Wiz',
+  'Lewd Lieutenant',
+  'Mattress Actress',
+  'Penis Machinist ',
+  'Phallus Chalice',
+  'Prostate Magistrate',
+  'Rear Admiral',
+  'Salami Tsunami',
+  'Scrotum Totem',
+  'Semen Demon',
+  'Shaft Shaft',
+  'Sperm Worm',
+  'Spunk Monk',
+  'Testicle Vestibule',
+  'Wang Wrangler',
+  'Weenie Genie',
+];
+
 function replaceNames() {
   var elements = document.querySelectorAll('[id^="ta_character:"]');
   for (var i = 0; i < elements.length; i++) {
@@ -29,12 +56,16 @@ function replaceNames() {
     var names = name.split(' ');
     // only consider ones with exactly two names
     if (names.length == 2) {
+      var flipName = false;
       if (looksJapanese(names[0]) && looksJapanese(names[1])) {
-        // flip the name
-        elements[i].innerHTML = names[1] + ' ' + names[0];
+        // name should be flipped
+        flipName = true;
         // change the border color so we know it was flipped
-        elements[i].parentElement.style["border-color"] = "#559999"
+        elements[i].parentElement.style['border-color'] = '#559999';
       }
+      // modify the name in the page
+      var meme = getMeme(names.join(' '));
+      elements[i].innerHTML = names[flipName ? 1 : 0] + ' "' + meme + '" ' + names[flipName ? 0 : 1];
     }
   }
 }
@@ -83,6 +114,22 @@ function looksJapanese(name) {
   }
   // didn't find anything obviously not Japanese, assume it is
   return true;
+}
+
+// based on https://stackoverflow.com/questions/6122571/simple-non-secure-hash-function-for-javascript
+function getMeme(s) {
+  var hash = 0;
+  if (s.length == 0) return hash;
+  for (var i = 0; i < s.length; i++) {
+    char = s.charCodeAt(i);
+    hash = ((hash<<5)-hash)+char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  var index = hash % memes.length;
+  if (index < 0) {
+    index += memes.length;
+  }
+  return memes[index];
 }
 
 replaceNames();
