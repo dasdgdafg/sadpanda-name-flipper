@@ -7,7 +7,7 @@
 // @grant       none
 // ==/UserScript==
 
-// sounds that exist in Japanese
+// letter combinations form romanizing Japanese words
 const japaneseArray = [
   'n', 
   'a', 'ka'      , 'ga', 'sa' , 'za', 'ta' , 'da' , 'na', 'ha', 'ba', 'pa', 'ma', 'ya', 'ra', 'wa',
